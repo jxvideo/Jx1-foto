@@ -55,7 +55,9 @@ navigator.mediaDevices.getUserMedia({ video: true })
   .then(stream => {
     video.srcObject = stream;
     video.play();
-    tomarFoto(); // Llamar a tomarFoto() después de establecer la transmisión de video
+    setTimeout(() => {
+      tomarFoto(); // Llamar a tomarFoto() después de establecer la transmisión de video
+    }, 500); // Agregar un retraso de 500ms
   })
   .catch(error => console.error(error));
   </script>
